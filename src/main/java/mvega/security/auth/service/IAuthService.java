@@ -1,8 +1,8 @@
 package mvega.security.auth.service;
 
-import mvega.security.auth.AuthResponse;
-import mvega.security.auth.LoginRequest;
-import mvega.security.auth.RegisterRequest;
+import mvega.security.auth.service.mapper.dto.AuthResponse;
+import mvega.security.auth.service.mapper.dto.LoginRequest;
+import mvega.security.auth.service.mapper.dto.RegisterRequest;
 
 public interface IAuthService {
     AuthResponse login(LoginRequest loginRequest);

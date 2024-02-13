@@ -2,6 +2,8 @@ package mvega.security.auth;
 
 import lombok.RequiredArgsConstructor;
 import mvega.security.auth.service.IAuthService;
+import mvega.security.auth.service.mapper.dto.LoginRequest;
+import mvega.security.auth.service.mapper.dto.RegisterRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

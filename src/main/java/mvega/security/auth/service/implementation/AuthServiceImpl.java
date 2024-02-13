@@ -1,15 +1,21 @@
 package mvega.security.auth.service.implementation;
 
 import lombok.RequiredArgsConstructor;
-import mvega.security.auth.AuthResponse;
-import mvega.security.auth.LoginRequest;
-import mvega.security.auth.RegisterRequest;
+import mvega.security.auth.persistence.repository.UserRepository;
+import mvega.security.auth.service.mapper.RegisterRequestToUser;
+import mvega.security.auth.service.mapper.dto.AuthResponse;
+import mvega.security.auth.service.mapper.dto.LoginRequest;
+import mvega.security.auth.service.mapper.dto.RegisterRequest;
+import mvega.security.auth.persistence.entity.User;
 import mvega.security.auth.service.IAuthService;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements IAuthService {
+
+    private RegisterRequestToUser registerRequestToUser;
+    private UserRepository userRepository;
     @Override
     public AuthResponse login(LoginRequest loginRequest) {
         return null;
@@ -17,6 +23,10 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public AuthResponse register(RegisterRequest registerRequest) {
-        return null;
+        User user = registerRequestToUser.map(registerRequest);
+        userRepository.save(user);
+        return AuthResponse.builder()
+                .token(null)
+                .build();
     }
 }

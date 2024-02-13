@@ -1,4 +1,4 @@
-package mvega.security.auth;
+package mvega.security.auth.service.mapper.dto;
 
 import lombok.*;
 
