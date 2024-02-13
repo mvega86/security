@@ -8,6 +8,7 @@ import mvega.security.auth.service.mapper.dto.LoginRequest;
 import mvega.security.auth.service.mapper.dto.RegisterRequest;
 import mvega.security.auth.persistence.entity.User;
 import mvega.security.auth.service.IAuthService;
+import mvega.security.jwt.JwtService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +17,7 @@ public class AuthServiceImpl implements IAuthService {
 
     private RegisterRequestToUser registerRequestToUser;
     private UserRepository userRepository;
+    private JwtService jwtService;
     @Override
     public AuthResponse login(LoginRequest loginRequest) {
         return null;
@@ -26,7 +28,7 @@ public class AuthServiceImpl implements IAuthService {
         User user = registerRequestToUser.map(registerRequest);
         userRepository.save(user);
         return AuthResponse.builder()
-                .token(null)
+                .token(jwtService.getToken(user))
                 .build();
     }
 }
