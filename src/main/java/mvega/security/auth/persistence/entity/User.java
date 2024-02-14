@@ -31,7 +31,7 @@ public class User implements UserDetails {
     String name;
     String lastname;
     String country;
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = { @JoinColumn(name = "id_user", referencedColumnName = "uuid") },
