@@ -23,6 +23,10 @@ public class AuthController {
     }
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest){
-        return ResponseEntity.ok(authService.register(registerRequest));
+        try {
+            return ResponseEntity.ok(authService.register(registerRequest));
+        }catch (Exception ex){
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

@@ -43,8 +43,11 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public AuthResponse register(RegisterRequest registerRequest) {
-        System.out.println(registerRequest.getUsername());
+    public AuthResponse register(RegisterRequest registerRequest) throws Exception {
+        Optional<User> optionalUser = userRepository.findByUsername(registerRequest.getUsername());
+        if (optionalUser.isPresent()){
+            throw new Exception("Username alredy exist");
+        }
         User user = registerRequestToUser.map(registerRequest);
         userRepository.save(user);
         return AuthResponse.builder()
